@@ -54,19 +54,19 @@ const app = new Vue({
             let icons = this.icons;
 
             if (Math.random() < 0.3) {
-                iconNr = Math.floor(Math.random() * icons.brands.length) + 1
-                icon = icons.brands[iconNr]
+                iconNr = Math.floor(Math.random() * icons.length) + 1
+                icon = icons[iconNr]
 
-                this.currentIcon = "fab fa-" + icon;
+                this.currentIcon = "fab fa-" + icon.class;
             } else {
-                iconNr = Math.floor(Math.random() * icons.standard.length) + 1
-                icon = icons.standard[iconNr]
+                iconNr = Math.floor(Math.random() * icons.length) + 1
+                icon = icons[iconNr]
 
-                this.currentIcon = this.iconType + " fa-" + icon;
+                this.currentIcon = this.iconType + " fa-" + icon.class;
             }
 
-            this.currentIconName = icon;
-        }
+            this.currentIconName = icon.name;
+        },
     },
     mounted() {
         let iconClass = window.icons;
