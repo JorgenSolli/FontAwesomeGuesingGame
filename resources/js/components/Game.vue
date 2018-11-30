@@ -9,10 +9,14 @@
         </div>
 
         <div id="controllers">
+            <div v-model="answer" class="answer"></div>
             <div class="ui huge fluid input">
-                <input v-on:keyup="checkGuess" v-model="iconGuess" id="icon-guess" type="text" placeholder="Go ahead...">
+                <input v-on:keyup="checkGuess" :disabled="didPass" v-model="iconGuess" id="icon-guess" type="text" placeholder="Go ahead...">
             </div>
-            <button @click="passIcon" class="mt-15 ui huge fluid button">Pass</button>
+            <button @click="passIcon" :class="passIconClass" class="mt-15 ui huge fluid button">
+                <span v-if="didPass">The answer was {{ answer }}</span>
+                <span v-else>Pass</span>
+            </button>
         </div>
     </div>
 </template>
@@ -21,10 +25,13 @@
     export default {
         data() {
             return {
+                passIconClass: '',
                 currentIcon: '',
                 currentIconName: '',
                 iconGuess: '',
                 iconType: 'fal',
+                didPass: false,
+                answer: null,
                 score: 0,
                 goal: 20,
             }
@@ -38,7 +45,21 @@
                 }
             },
             passIcon() {
-                this.getRandomIcon();
+                if (!this.didPass) {
+                    this.iconGuess = '';
+                    this.answer = this.currentIconName;
+                    this.passIconClass = "negative";
+                    this.showAnswer();
+                    this.getRandomIcon();
+                }
+            },
+            showAnswer() {
+                this.didPass = true;
+
+                setTimeout(() => {
+                    this.didPass = false;
+                    this.passIconClass = '';
+                }, 3000);
             },
             getRandomIcon() {
                 let type, icon, iconNr;
@@ -58,6 +79,12 @@
         mounted() {
             let iconClass = window.icons;
             this.getRandomIcon();
+            window.addEventListener("keypress", (e) => {
+                if (e.key == "P") {
+                    e.preventDefault()
+                    this.passIcon()
+                }
+            });
         }
     }
 </script>

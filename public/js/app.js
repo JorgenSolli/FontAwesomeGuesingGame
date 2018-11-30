@@ -47592,14 +47592,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            passIconClass: '',
             currentIcon: '',
             currentIconName: '',
             iconGuess: '',
             iconType: 'fal',
+            didPass: false,
+            answer: null,
             score: 0,
             goal: 20
         };
@@ -47614,7 +47621,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         passIcon: function passIcon() {
-            this.getRandomIcon();
+            if (!this.didPass) {
+                this.iconGuess = '';
+                this.answer = this.currentIconName;
+                this.passIconClass = "negative";
+                this.showAnswer();
+                this.getRandomIcon();
+            }
+        },
+        showAnswer: function showAnswer() {
+            var _this = this;
+
+            this.didPass = true;
+
+            setTimeout(function () {
+                _this.didPass = false;
+                _this.passIconClass = '';
+            }, 3000);
         },
         getRandomIcon: function getRandomIcon() {
             var type = void 0,
@@ -47634,8 +47657,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     mounted: function mounted() {
+        var _this2 = this;
+
         var iconClass = window.icons;
         this.getRandomIcon();
+        window.addEventListener("keypress", function (e) {
+            if (e.key == "P") {
+                e.preventDefault();
+                _this2.passIcon();
+            }
+        });
     }
 });
 
@@ -47657,6 +47688,17 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { attrs: { id: "controllers" } }, [
+      _c("div", {
+        staticClass: "answer",
+        model: {
+          value: _vm.answer,
+          callback: function($$v) {
+            _vm.answer = $$v
+          },
+          expression: "answer"
+        }
+      }),
+      _vm._v(" "),
       _c("div", { staticClass: "ui huge fluid input" }, [
         _c("input", {
           directives: [
@@ -47667,7 +47709,12 @@ var render = function() {
               expression: "iconGuess"
             }
           ],
-          attrs: { id: "icon-guess", type: "text", placeholder: "Go ahead..." },
+          attrs: {
+            disabled: _vm.didPass,
+            id: "icon-guess",
+            type: "text",
+            placeholder: "Go ahead..."
+          },
           domProps: { value: _vm.iconGuess },
           on: {
             keyup: _vm.checkGuess,
@@ -47685,9 +47732,14 @@ var render = function() {
         "button",
         {
           staticClass: "mt-15 ui huge fluid button",
+          class: _vm.passIconClass,
           on: { click: _vm.passIcon }
         },
-        [_vm._v("Pass")]
+        [
+          _vm.didPass
+            ? _c("span", [_vm._v("The answer was " + _vm._s(_vm.answer))])
+            : _c("span", [_vm._v("Pass")])
+        ]
       )
     ])
   ])
