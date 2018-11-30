@@ -1,7 +1,11 @@
 <template>
-    <div id="start">
+    <div id="game">
+        <div id="header">
+            <h1>The <strong>Font Awesome</strong> Icon Game</h1>
+        </div>
+
         <div id="score">
-            Score: {{ score }}
+            <span class="text">Score:</span> <span class="total">{{ score }}</span>
         </div>
 
         <div id="icon-container">

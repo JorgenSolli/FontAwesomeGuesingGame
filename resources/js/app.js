@@ -37,6 +37,7 @@ new Vue({
     components: { Welcome, Game },
     data: {
         isGaming: false,
+        isLoading: '',
         icons:  new window.icons.IconSet
     },
     mounted() {

@@ -13972,6 +13972,7 @@ new Vue({
   components: { Welcome: __WEBPACK_IMPORTED_MODULE_0__components_Welcome_vue___default.a, Game: __WEBPACK_IMPORTED_MODULE_1__components_Game_vue___default.a },
   data: {
     isGaming: false,
+    isLoading: '',
     icons: new window.icons.IconSet()
   },
   mounted: function mounted() {}
@@ -47481,6 +47482,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -47489,7 +47494,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         startGame: function startGame() {
-            this.$parent.isGaming = true;
+            var _this = this;
+
+            this.$parent.isLoading = 'is-flipped';
+
+            setTimeout(function () {
+                _this.$parent.isGaming = true;
+            }, 400);
         }
     }
 });
@@ -47503,6 +47514,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "welcome" } }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c(
       "button",
       { staticClass: "ui huge teal button", on: { click: _vm.startGame } },
@@ -47510,7 +47523,20 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "header" } }, [
+      _c("h1", [
+        _vm._v("The "),
+        _c("strong", [_vm._v("Font Awesome")]),
+        _vm._v(" Icon Game")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -47573,6 +47599,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -47678,9 +47708,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "start" } }, [
+  return _c("div", { attrs: { id: "game" } }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { attrs: { id: "score" } }, [
-      _vm._v("\n        Score: " + _vm._s(_vm.score) + "\n    ")
+      _c("span", { staticClass: "text" }, [_vm._v("Score:")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "total" }, [_vm._v(_vm._s(_vm.score))])
     ]),
     _vm._v(" "),
     _c("div", { attrs: { id: "icon-container" } }, [
@@ -47744,7 +47778,20 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "header" } }, [
+      _c("h1", [
+        _vm._v("The "),
+        _c("strong", [_vm._v("Font Awesome")]),
+        _vm._v(" Icon Game")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -11,10 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <section id="app">
-            <div id="header">
-                <h1>The <strong>Font Awesome</strong> Icon Game</h1>
-            </div>
+        <section :class="isLoading" id="app" class="card">
             <game v-if="isGaming"></game>
             <welcome v-else></welcome>
         </section>
