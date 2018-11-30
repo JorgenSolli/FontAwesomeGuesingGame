@@ -11,6 +11,10 @@
 @import "fontawesome/regular";
 @import "fontawesome/solid";
 
+.mt-15 {
+	margin-top: 15px !important;
+}
+
 h1 {
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 300;
@@ -31,13 +35,17 @@ body {
 #app {
 	padding: 20px;
 	width: 480px;
-	min-height: 600px;
+	max-height: 800px;
+	height: 90vh;
 	background: #fff;
 	margin: auto;
 	border-radius: 8px;
 	display: flex;
-    align-items: baseline;
 	flex-wrap: wrap;
+	justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    flex-direction: row;
 	box-shadow: 0 6px 15px 0 rgba(36,37,38,.2);
 	border: 1px solid #f5f5f5;
 }
@@ -48,36 +56,74 @@ body {
 
 #header {
 	display: flex;
-	justify-content: center;
-	align-self: flex-start;
-}
+	flex-wrap: wrap;
+	justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+	flex-direction: column;
+	height: 40px;
 
-#score {
-	display: flex;
-	align-self: flex-start;
-	justify-content: center;
-}
-
-#icon-container {
-	display: flex;
-	justify-content: center;
-	margin: auto;
-
-	#current-icon {
-		color: #203453;
-		font-size: 10rem;
+	h1 {
+		align-self: center;
 	}
 }
 
-#controllers {
+#start {
 	display: flex;
-	justify-content: center;
-	align-self: flex-end;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+	flex-direction: column;
+	height: calc(100% - 40px);
+	
+	
+	#score {
+		display: flex;
+		align-self: center;
+		justify-content: center;
+	}
+	
+	#icon-container {
+		display: flex;
+		justify-content: center;
+		margin: auto;
+	
+		#current-icon {
+			color: #203453;
+			font-size: 10rem;
+		}
+	}
+	
+	#controllers {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
 }
+
+#welcome {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+	flex-direction: column;
+	height: calc(100% - 40px);
+
+	button {
+		margin: auto
+	}
+}
+
 
 .ui.input {
 	width: 100%;
 	input {
 		border-radius: 8px;
 	}
+}
+
+.ui.button {
+	border-radius: 8px;
 }

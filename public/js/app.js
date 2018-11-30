@@ -47502,8 +47502,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "game" } }, [
-    _c("button", { on: { click: _vm.startGame } }, [_vm._v("Let's go!")])
+  return _c("div", { attrs: { id: "welcome" } }, [
+    _c(
+      "button",
+      { staticClass: "ui huge teal button", on: { click: _vm.startGame } },
+      [_vm._v("Let's go!")]
+    )
   ])
 }
 var staticRenderFns = []
@@ -47585,6 +47589,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -47606,24 +47613,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.score++;
             }
         },
+        passIcon: function passIcon() {
+            this.getRandomIcon();
+        },
         getRandomIcon: function getRandomIcon() {
             var type = void 0,
                 icon = void 0,
                 iconNr = void 0;
             var icons = this.$parent.icons;
 
-            if (Math.random() < 0.3) {
-                iconNr = Math.floor(Math.random() * icons.length) + 1;
-                icon = icons[iconNr];
+            iconNr = Math.floor(Math.random() * icons.length) + 1;
+            icon = icons[iconNr];
 
+            if (icon.type == "brand") {
                 this.currentIcon = "fab fa-" + icon.class;
             } else {
-                iconNr = Math.floor(Math.random() * icons.length) + 1;
-                icon = icons[iconNr];
-
                 this.currentIcon = this.iconType + " fa-" + icon.class;
             }
-
             this.currentIconName = icon.name;
         }
     },
@@ -47642,14 +47648,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "start" } }, [
-    _c("div", { attrs: { id: "score" } }, [_vm._v(_vm._s(_vm.score))]),
+    _c("div", { attrs: { id: "score" } }, [
+      _vm._v("\n        Score: " + _vm._s(_vm.score) + "\n    ")
+    ]),
     _vm._v(" "),
     _c("div", { attrs: { id: "icon-container" } }, [
       _c("i", { class: _vm.currentIcon, attrs: { id: "current-icon" } })
     ]),
     _vm._v(" "),
     _c("div", { attrs: { id: "controllers" } }, [
-      _c("div", { staticClass: "ui huge input" }, [
+      _c("div", { staticClass: "ui huge fluid input" }, [
         _c("input", {
           directives: [
             {
@@ -47671,7 +47679,16 @@ var render = function() {
             }
           }
         })
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "mt-15 ui huge fluid button",
+          on: { click: _vm.passIcon }
+        },
+        [_vm._v("Pass")]
+      )
     ])
   ])
 }

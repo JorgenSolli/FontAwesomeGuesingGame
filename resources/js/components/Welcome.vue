@@ -1,6 +1,6 @@
 <template>
-    <div id="game">
-        <button @click="startGame">Let's go!</button>
+    <div id="welcome">
+        <button @click="startGame" class="ui huge teal button">Let's go!</button>
     </div>
 </template>
 
