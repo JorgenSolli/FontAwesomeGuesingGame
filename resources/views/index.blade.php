@@ -15,20 +15,8 @@
             <div id="header">
                 <h1>The <strong>Font Awesome</strong> Icon Game</h1>
             </div>
-
-            <div id="score">
-
-            </div>
-
-            <div id="icon-container">
-                <i :class="currentIcon" id="current-icon"></i>
-            </div>
-
-            <div id="controllers">
-                <div class="ui huge input">
-                    <input v-on:keyup="checkGuess" v-model="iconGuess" id="icon-guess" type="text" placeholder="Go ahead...">
-                </div>
-            </div>
+            <game v-if="isGaming"></game>
+            <welcome v-else></welcome>
         </section>
     </div>
 

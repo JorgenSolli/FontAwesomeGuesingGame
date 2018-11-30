@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+window.icons = require('./icons.js');
 
 window.Vue = require('vue');
 
@@ -17,7 +18,7 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('start-component', require('./components/Start.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
@@ -28,49 +29,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-window.icons = require('./icons.js');
+import Welcome from './components/Welcome.vue';
+import Game from './components/Game.vue';
 
-const app = new Vue({
+new Vue({
     el: '#app',
+    components: { Welcome, Game },
     data: {
-        currentIcon: '',
-        currentIconName: '',
-        iconGuess: '',
-        iconType: 'fal',
-        icons: '',
-        points: 0,
-        goal: 20,
-    },
-    methods: {
-        checkGuess() {
-            if (this.currentIconName == this.iconGuess) {
-                this.iconGuess = '';
-                this.getRandomIcon();
-                this.points++;
-            }
-        },
-        getRandomIcon() {
-            let type, icon, iconNr;
-            let icons = this.icons;
-
-            if (Math.random() < 0.3) {
-                iconNr = Math.floor(Math.random() * icons.length) + 1
-                icon = icons[iconNr]
-
-                this.currentIcon = "fab fa-" + icon.class;
-            } else {
-                iconNr = Math.floor(Math.random() * icons.length) + 1
-                icon = icons[iconNr]
-
-                this.currentIcon = this.iconType + " fa-" + icon.class;
-            }
-
-            this.currentIconName = icon.name;
-        },
+        isGaming: false,
+        icons:  new window.icons.IconSet
     },
     mounted() {
-        let iconClass = window.icons;
-        this.icons = new iconClass.IconSet;
-        this.getRandomIcon();
+        
     }
 });
