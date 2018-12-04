@@ -38,7 +38,8 @@ new Vue({
     data: {
         isGaming: false,
         isLoading: '',
-        icons:  new window.icons.IconSet
+        icons:  new window.icons.IconSet,
+        nickname: '',
     },
     mounted() {
         

@@ -4,7 +4,12 @@
             <h1>The <strong>Font Awesome</strong> Icon Game</h1>
         </div>
 
-        <button @click="startGame" class="ui huge teal button">Let's go!</button>
+        <div class="content">
+            <div class="ui huge fluid input">
+                <input v-model="nickname" type="text" placeholder="Nickname...">
+            </div>
+            <button @click="startGame" class="ui huge fluid teal button mt-15">Let's go!</button>
+        </div>
     </div>
 </template>
 
@@ -12,12 +17,13 @@
     export default {
         data() {
             return {
-
+                nickname: ''
             }
         },
         methods: {
             startGame() {
                 this.$parent.isLoading = 'is-flipped';
+                this.$parent.nickname = this.nickname;
 
                 setTimeout(() => {
                     this.$parent.isGaming = true;

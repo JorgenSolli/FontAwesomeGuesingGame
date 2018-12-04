@@ -64,9 +64,14 @@ body {
     align-content: stretch;
 	flex-direction: column;
 	height: 100%;
-
-	/*position: absolute;*/
 	backface-visibility: hidden;
+
+	.content {
+		display: flex;
+		flex-wrap: wrap;
+		margin: auto;
+    	width: 100%;
+	}
 
 	button {
 		margin: auto
